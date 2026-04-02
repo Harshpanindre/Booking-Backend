@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Voyager – Premium travel booking platform for flights and hotels worldwide." />
+  <title>Voyager – Book Flights & Hotels</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo" id="logo-link">
+        <div class="logo-icon">✈</div>
+        <span>Voyager</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#" class="nav-link active" data-page="home" id="nav-home">Home</a></li>
+        <li><a href="#" class="nav-link" data-page="flights" id="nav-flights">Flights</a></li>
+        <li><a href="#" class="nav-link" data-page="hotels" id="nav-hotels">Hotels</a></li>
+        <li><a href="#" class="nav-link" data-page="bookings" id="nav-bookings">My Bookings</a></li>
+        <li><a href="#" class="nav-link" data-page="admin" id="nav-admin">Admin</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn btn-ghost" id="btn-login">Sign In</button>
+        <button class="btn btn-primary" id="btn-register">Get Started</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- TOAST -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- MODAL OVERLAY -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <div class="modal-content" id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- ===================== PAGE: HOME ===================== -->
+  <main id="page-home" class="page active">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-particles" id="hero-particles"></div>
+      <div class="hero-content">
+        <div class="hero-badge">✨ Premium Travel Experience</div>
+        <h1 class="hero-title">Journey Beyond<br /><span class="gradient-text">The Ordinary</span></h1>
+        <p class="hero-subtitle">Discover world-class flights and luxury hotels — all in one seamless platform built for the modern traveller.</p>
+        <!-- Search Widget -->
+        <div class="search-widget">
+          <div class="search-tabs">
+            <button class="search-tab active" id="tab-flight" data-type="flight">✈ Flights</button>
+            <button class="search-tab" id="tab-hotel" data-type="hotel">🏨 Hotels</button>
+          </div>
+          <div class="search-form" id="search-flight-form">
+            <div class="search-group">
+              <label>From</label>
+              <input type="text" id="hero-origin" placeholder="Origin city" />
+            </div>
+            <div class="search-group">
+              <label>To</label>
+              <input type="text" id="hero-destination" placeholder="Destination city" />
+            </div>
+            <div class="search-group">
+              <label>Date</label>
+              <input type="date" id="hero-date" />
+            </div>
+            <div class="search-group">
+              <label>Passengers</label>
+              <input type="number" id="hero-passengers" min="1" max="10" value="1" />
+            </div>
+            <button class="btn btn-search" id="hero-search-flight">Search Flights</button>
+          </div>
+          <div class="search-form hidden" id="search-hotel-form">
+            <div class="search-group">
+              <label>City</label>
+              <input type="text" id="hero-hotel-city" placeholder="Enter city" />
+            </div>
+            <div class="search-group">
+              <label>Check-in</label>
+              <input type="date" id="hero-checkin" />
+            </div>
+            <div class="search-group">
+              <label>Check-out</label>
+              <input type="date" id="hero-checkout" />
+            </div>
+            <button class="btn btn-search" id="hero-search-hotel">Search Hotels</button>
+          </div>
+        </div>
+      </div>
+      <div class="hero-scroll-hint">
+        <div class="scroll-dot"></div>
+        <span>Scroll to explore</span>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number" data-target="500">0</div>
+            <div class="stat-label">Destinations</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="1200">0</div>
+            <div class="stat-label">Hotels Listed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="50000">0</div>
+            <div class="stat-label">Happy Travellers</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="99">0</div>
+            <div class="stat-label">% Satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Destinations -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">🌍 Popular Picks</div>
+          <h2 class="section-title">Featured Destinations</h2>
+          <p class="section-subtitle">Handpicked destinations loved by our travellers</p>
+        </div>
+        <div class="destinations-grid">
+          <div class="dest-card" style="--img:url('https://images.unsplash.com/photo-1503917988258-f87a78e3c995?w=600&q=80')">
+            <div class="dest-overlay"></div>
+            <div class="dest-content">
+              <h3>Paris</h3>
+              <p>🇫🇷 France</p>
+              <span class="dest-tag">From ₹45,000</span>
+            </div>
+          </div>
+          <div class="dest-card" style="--img:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80')">
+            <div class="dest-overlay"></div>
+            <div class="dest-content">
+              <h3>Dubai</h3>
+              <p>🇦🇪 UAE</p>
+              <span class="dest-tag">From ₹28,000</span>
+            </div>
+          </div>
+          <div class="dest-card" style="--img:url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80')">
+            <div class="dest-overlay"></div>
+            <div class="dest-content">
+              <h3>Tokyo</h3>
+              <p>🇯🇵 Japan</p>
+              <span class="dest-tag">From ₹62,000</span>
+            </div>
+          </div>
+          <div class="dest-card" style="--img:url('https://images.unsplash.com/photo-1555992336-03a23c7b20ee?w=600&q=80')">
+            <div class="dest-overlay"></div>
+            <div class="dest-content">
+              <h3>Santorini</h3>
+              <p>🇬🇷 Greece</p>
+              <span class="dest-tag">From ₹55,000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">⚡ Why Voyager</div>
+          <h2 class="section-title">Travel Smarter</h2>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Secure Bookings</h3>
+            <p>End-to-end encrypted payments and session-based authentication keep your data safe.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Instant Confirmation</h3>
+            <p>Get your booking confirmed in seconds with real-time seat and room availability checks.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💳</div>
+            <h3>Flexible Payments</h3>
+            <p>Multiple payment options with transparent pricing — no hidden fees, ever.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>Smart Search</h3>
+            <p>Filter flights by class, price, airline, origin and destination in one click.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3>Manage Anytime</h3>
+            <p>View, update, or cancel bookings at any time from your personal dashboard.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🌟</div>
+            <h3>Premium Hotels</h3>
+            <p>Curated hotel listings with ratings, amenities, and competitive nightly rates.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== PAGE: FLIGHTS ===================== -->
+  <main id="page-flights" class="page">
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">✈ Search Flights</h1>
+        <p class="page-subtitle">Find the best fares across hundreds of airlines</p>
+      </div>
+    </div>
+    <div class="container page-body">
+      <div class="filter-panel glass-card">
+        <h3 class="filter-title">🔍 Filter Flights</h3>
+        <div class="filter-grid">
+          <div class="form-group">
+            <label class="form-label">Origin</label>
+            <input type="text" class="form-input" id="fl-origin" placeholder="e.g. Mumbai" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Destination</label>
+            <input type="text" class="form-input" id="fl-dest" placeholder="e.g. Delhi" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Class</label>
+            <select class="form-input" id="fl-class">
+              <option value="">All Classes</option>
+              <option value="economy">Economy</option>
+              <option value="business">Business</option>
+              <option value="first">First Class</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Max Price (₹)</label>
+            <input type="number" class="form-input" id="fl-price" placeholder="e.g. 10000" />
+          </div>
+        </div>
+        <button class="btn btn-primary" id="btn-search-flights">Search Flights</button>
+      </div>
+      <div class="results-grid" id="flights-results">
+        <div class="empty-state">
+          <div class="empty-icon">✈</div>
+          <h3>Ready to Fly?</h3>
+          <p>Use the filters above to search available flights.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================== PAGE: HOTELS ===================== -->
+  <main id="page-hotels" class="page">
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">🏨 Find Hotels</h1>
+        <p class="page-subtitle">Discover premium stays at the best prices</p>
+      </div>
+    </div>
+    <div class="container page-body">
+      <div class="filter-panel glass-card">
+        <h3 class="filter-title">🔍 Filter Hotels</h3>
+        <div class="filter-grid">
+          <div class="form-group">
+            <label class="form-label">City</label>
+            <input type="text" class="form-input" id="ht-city" placeholder="e.g. Goa" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Max Price/Night (₹)</label>
+            <input type="number" class="form-input" id="ht-price" placeholder="e.g. 5000" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Min Rating</label>
+            <select class="form-input" id="ht-rating">
+              <option value="">Any Rating</option>
+              <option value="3">3+ Stars</option>
+              <option value="4">4+ Stars</option>
+              <option value="4.5">4.5+ Stars</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="btn-search-hotels">Search Hotels</button>
+      </div>
+      <div class="results-grid hotels-grid" id="hotels-results">
+        <div class="empty-state">
+          <div class="empty-icon">🏨</div>
+          <h3>Looking for a Stay?</h3>
+          <p>Use the filters above to find available hotels.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================== PAGE: MY BOOKINGS ===================== -->
+  <main id="page-bookings" class="page">
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">📋 My Bookings</h1>
+        <p class="page-subtitle">Manage all your trips in one place</p>
+      </div>
+    </div>
+    <div class="container page-body">
+      <div class="bookings-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="flight">Flights</button>
+        <button class="filter-btn" data-filter="hotel">Hotels</button>
+        <button class="filter-btn" data-filter="confirmed">Confirmed</button>
+        <button class="filter-btn" data-filter="pending">Pending</button>
+        <button class="filter-btn" data-filter="cancelled">Cancelled</button>
+      </div>
+      <div id="bookings-list" class="bookings-list">
+        <div class="empty-state">
+          <div class="empty-icon">🧳</div>
+          <h3>No Bookings Yet</h3>
+          <p>Sign in to view your bookings or create a new one.</p>
+          <button class="btn btn-primary" id="goto-explore">Explore Flights & Hotels</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================== PAGE: ADMIN ===================== -->
+  <main id="page-admin" class="page">
+    <div class="page-header admin-header">
+      <div class="container">
+        <h1 class="page-title">⚙️ Admin Dashboard</h1>
+        <p class="page-subtitle">Manage users, bookings, hotels, and flights</p>
+      </div>
+    </div>
+    <div class="container page-body">
+      <div class="admin-stats">
+        <div class="admin-stat-card">
+          <div class="asc-icon">👥</div>
+          <div class="asc-info">
+            <span class="asc-num" id="admin-user-count">—</span>
+            <span class="asc-label">Total Users</span>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="asc-icon">📋</div>
+          <div class="asc-info">
+            <span class="asc-num" id="admin-booking-count">—</span>
+            <span class="asc-label">Total Bookings</span>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="asc-icon">🏨</div>
+          <div class="asc-info">
+            <span class="asc-num" id="admin-hotel-count">—</span>
+            <span class="asc-label">Hotels</span>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="asc-icon">💰</div>
+          <div class="asc-info">
+            <span class="asc-num" id="admin-revenue">—</span>
+            <span class="asc-label">Total Revenue</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Tabs -->
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="users">👥 Users</button>
+        <button class="admin-tab" data-tab="bookings">📋 Bookings</button>
+        <button class="admin-tab" data-tab="hotels">🏨 Hotels</button>
+      </div>
+
+      <!-- Users Table -->
+      <div class="admin-panel active" id="admin-panel-users">
+        <div class="panel-header">
+          <h3>All Users</h3>
+          <button class="btn btn-primary btn-sm" id="btn-load-users">Load Users</button>
+        </div>
+        <div class="table-wrapper">
+          <table class="data-table" id="users-table">
+            <thead>
+              <tr>
+                <th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Joined</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="users-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Bookings Table -->
+      <div class="admin-panel" id="admin-panel-bookings">
+        <div class="panel-header">
+          <h3>All Bookings</h3>
+          <button class="btn btn-primary btn-sm" id="btn-load-bookings">Load Bookings</button>
+        </div>
+        <div class="table-wrapper">
+          <table class="data-table" id="bookings-table">
+            <thead>
+              <tr>
+                <th>ID</th><th>User</th><th>Type</th><th>Amount</th><th>Status</th><th>Payment</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="bookings-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Hotels Panel -->
+      <div class="admin-panel" id="admin-panel-hotels">
+        <div class="panel-header">
+          <h3>Manage Hotels</h3>
+          <button class="btn btn-primary btn-sm" id="btn-add-hotel">+ Add Hotel</button>
+        </div>
+        <div class="table-wrapper">
+          <table class="data-table" id="hotels-table">
+            <thead>
+              <tr>
+                <th>Name</th><th>City</th><th>Price/Night</th><th>Rating</th><th>Rooms</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="hotels-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo"><div class="logo-icon">✈</div><span>Voyager</span></div>
+          <p>Your premium travel companion for flights and hotels worldwide.</p>
+          <div class="social-links">
+            <a href="#" class="social-link">𝕏</a>
+            <a href="#" class="social-link">in</a>
+            <a href="#" class="social-link">f</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul><li><a href="#">About Us</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul><li><a href="#">Help Centre</a></li><li><a href="#">Contact Us</a></li><li><a href="#">Refund Policy</a></li></ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Cookie Policy</a></li></ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Voyager. All rights reserved.</p>
+        <p>Built with ❤️ for world travellers</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
